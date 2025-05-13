@@ -128,18 +128,20 @@ class OandaClient():
         
         url2 = f'https://api-fx{self.side}.oanda.com/v3/accounts/{self.account_id}/trades/{trade_id}/orders'
 
-        data = {"takeProfit": {'timeInForce': 'GTC',
+        data = {"takeProfit": {'timeInForce':'GTC',
                                'price': tp_price},
-                "stopLoss": {'timeInForce': 'GTC',
+                "stopLoss": {'timeInForce':'GTC',
                              'price': sl_price}}
 
         response = requests.put(url2, headers=headers, data=json.dumps(data))
 
 
-if __name__ == '__ main __':
+if __name__ == '__main__':
 
     oanda = OandaClient()
 
+    oanda.get_candles()
+    
     oanda.close_long_positions()
     time.sleep(2)
 
